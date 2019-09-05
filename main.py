@@ -29,8 +29,8 @@ def showDatabases():
 		print(x)
 
 
-def exitSQL():
-	mycursor.execute("exit()")
+def quit():
+	mycursor("quit")
 
 
 def ask():
@@ -41,7 +41,6 @@ def ask():
 		mycursor.execute("CREATE DATABASE " + dbName)
 		print(dbName + " is now a database!")
 		ask()
-		
 
 	elif choice == "2":
 		whichToUse = "Which database to use?"
@@ -52,9 +51,6 @@ def ask():
 
 		print(nowUsing + dbUse.upper())
 		usingQuestions = input(askTables)
-	
-	elif choice == "3":
-		exitSQL()
 
 		if usingQuestions == "1":
 			mycursor.execute("SHOW TABLES")
@@ -67,14 +63,14 @@ def ask():
 			ask()
 
 		elif usingQuestions == "3":
-			exitSQL()
-
-		else:
-			ask()
+			quit()
 
 	elif choice == "3":
 		showDatabases()
 		ask()
+
+	elif choice == "4":
+		quit()
 
 
 showDatabases()
