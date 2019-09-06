@@ -26,5 +26,5 @@ MySQL Database Automation. Simply have your database up and running, and Cynthia
   <li><p>:globe_with_meridians: Make Sure Your SQL Database is Online.</p></li>
   <li><p>:package: Clone the Repository.</p></li>
   <li><p>:outbox_tray: Open Repository</p></li>
-  <li><p>:point_right: Double Click 'main.py'</p></li>
+  <li><p>:point_right: (Windows) Double Click 'main.py', (Linux) 'python3 main.py'</p></li>
 </ul>
