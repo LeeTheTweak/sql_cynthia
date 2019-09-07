@@ -12,7 +12,7 @@ mycursor = mydb.cursor()
 
 question = """\n
 Type a number to execute a command
-1 - Create Database, 2 - Use ~'db name'~, 3 - Show Databases, 4 - Exit
+1 - Create Database, 2 - Use ~'db name'~, 3 - Show Databases, 4 - Delete Database, 5 - Exit
 """
 askTables = """\n
 1 - SHOW TABLES, 2 - SHOW DATABASES, 3 - Exit
@@ -33,17 +33,22 @@ def quit():
 	mycursor("quit")
 
 
+def delete_database():
+	dropDB = input("Which database would you like to delete?\n")
+	mycursor.execute("DROP DATABASE " + dropDB)
+
+
 def ask():
 	choice = input(question.upper())
 	if choice == "1":
-		askDBName = "What is the name of your new database?"
+		askDBName = "What is the name of your new database?\n"
 		dbName = input(askDBName.upper())
 		mycursor.execute("CREATE DATABASE " + dbName)
 		print(dbName + " is now a database!")
 		ask()
 
 	elif choice == "2":
-		whichToUse = "Which database to use?"
+		whichToUse = "Which database to use?\n"
 		nowUsing = "You're now using, "
 
 		dbUse = input(whichToUse.upper())
@@ -70,6 +75,10 @@ def ask():
 		ask()
 
 	elif choice == "4":
+		delete_database()
+		ask()
+
+	elif choice == "5":
 		quit()
 
 
