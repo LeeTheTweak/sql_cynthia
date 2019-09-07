@@ -1,7 +1,12 @@
 import mysql.connector
 
 # Add a function for user to enter host, user, and password of connection.------------
+greetings = "Hello there! I'm Cynthia and I'll be here to help you out!"
 askForConnection = "Connect to your database:"
+
+print(greetings.upper())
+print(askForConnection.upper())
+
 hostname = input("Host: ")
 username = input("Username: ")
 password = input("Password: ")
@@ -14,6 +19,7 @@ question = """\n
 Type a number to execute a command
 1 - Create Database, 2 - Use ~'db name'~, 3 - Show Databases, 4 - Delete Database, 5 - Exit
 """
+
 askTables = """\n
 1 - SHOW TABLES, 2 - SHOW DATABASES, 3 - Exit
 """
