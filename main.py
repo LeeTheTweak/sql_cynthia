@@ -21,11 +21,15 @@ whats_db_name = "What is the name of your new database?\n"
 
 question = """\n
 Type a number to execute a command
-1 - Create Database, 2 - Use ~'db name'~, 3 - Show Databases, 4 - Delete Database, 5 - Exit
+1 - CREATE DATABASE, 2 - Use ~'db name'~, 3 - SHOW DATABASES, 4 - DELETE DATABASE, 5 - EXIT
 """
 
 askTables = """\n
-1 - SHOW TABLES, 2 - SHOW DATABASES, 3 - Exit
+1 - SHOW TABLES, 2 - SHOW DATABASES, 3 - EXIT
+"""
+
+describeLobby = """
+1 - REVEAL TABLE, 2 - SHOW DATABASES, 3 - EXIT
 """
 
 presentDB = "\nHere are your current databases."
@@ -33,6 +37,8 @@ presentDB = "\nHere are your current databases."
 whichToUse = "Which database to use?\n"
 
 nowUsing = "You're now using, "
+
+describeWhatStr = "What table do you want to reveal?:\n"
 
 ##################################################################################################
 
@@ -63,6 +69,11 @@ def delete_database():
 	dropDB = input("Which database would you like to delete?\n")
 	mycursor.execute("DROP DATABASE " + dropDB)
 
+def describeTable(selectedTable):
+	mycursor.execute("DESCRIBE " + selectedTable)
+	for x in mycursor:
+		print(x)
+
 ###################################################################
 
 
@@ -77,32 +88,52 @@ def ask():													# THE MAIN CHOICES LOOP
 		print(dbName + " is now a database!")
 		ask()
 
+		
+
 	elif choice == "2":										# IN MAIN LOBBY, IF USER HITS 2, USE DATABASE TYPED.
 		dbUse = input(whichToUse.upper())
 		mycursor.execute("USE " + dbUse)
 		print(nowUsing + dbUse.upper())
 		usingQuestions = input(askTables)
 
+
+
 		if usingQuestions == "1":							# IN USING DATABASE SECTION, IF 1, SHOW TABLES IN DB. PRESENT MAIN LOBBY.
 			mycursor.execute("SHOW TABLES")
 			for x in mycursor:								# FOR LOOP FOR GETTING LIST OF TABLES.
 				print(x)
-			ask()
+
+
+
+			usingTableQuestions = input(describeLobby)  	# IN USING TABLE SECTION, IF 1, DESCRIBE A TABLE INPUTED.
+			if usingTableQuestions == "1":
+				tableTyped = input(describeWhatStr.upper())
+				describeTable(tableTyped)
+
+
 
 		elif usingQuestions == "2":							# IN USING DATABASE SECTION, IF 2, SHOW DATABASES. PRESENT MAIN LOBBY.
 			showDatabases()
 			ask()
 
-		elif usingQuestions == "3":							# IN USING DATABASE SECTION, IF 3, QUIT PROGRAM.
+
+
+		elif usingQuestions == "4":							# IN USING DATABASE SECTION, IF 4, QUIT PROGRAM.
 			quit()
+
+
 
 	elif choice == "3":										# IN MAIN LOBBY, IF 3, SHOW DATABASES. PRESENT MAIN LOBBY.
 		showDatabases()
 		ask()
 
+
+
 	elif choice == "4":										# IN MAIN LOBBY, IF 4, DELETE DATABASE TYPED. PRESENT MAIN LOBBY.
 		delete_database()
 		ask()
+
+
 
 	elif choice == "5":										# IN MAIN LOBBY, IF 5, QUIT PROGRAM.
 		quit()
