@@ -29,7 +29,7 @@ askTables = """\n
 """
 
 describeLobby = """
-1 - REVEAL TABLE, 2 - SHOW DATABASES, 3 - EXIT
+1 - REVEAL TABLE, 2 - SELECT ALL FROM ~table name~ , 3 - SHOW DATABASES, 4 - EXIT
 """
 
 presentDB = "\nHere are your current databases."
@@ -39,6 +39,8 @@ whichToUse = "Which database to use?\n"
 nowUsing = "You're now using, "
 
 describeWhatStr = "What table do you want to reveal?:\n"
+
+whichTableToSelect = "Which table do you want to select?:\n"
 
 ##################################################################################################
 
@@ -102,6 +104,7 @@ def ask():													# THE MAIN CHOICES LOOP
 			mycursor.execute("SHOW TABLES")
 			for x in mycursor:								# FOR LOOP FOR GETTING LIST OF TABLES.
 				print(x)
+		
 
 
 
@@ -110,6 +113,16 @@ def ask():													# THE MAIN CHOICES LOOP
 				tableTyped = input(describeWhatStr.upper())
 				describeTable(tableTyped)
 
+
+			elif usingTableQuestions == "2":
+				selectAllFromTable = input(whichTableToSelect.upper())
+				mycursor.execute("SELECT * FROM " + selectAllFromTable)
+				for x in mycursor:
+					print(x)
+
+			
+			elif usingTableQuestions == "3":
+				ask()
 
 
 		elif usingQuestions == "2":							# IN USING DATABASE SECTION, IF 2, SHOW DATABASES. PRESENT MAIN LOBBY.
