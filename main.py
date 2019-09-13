@@ -133,6 +133,7 @@ def ask():
 				mycursor.execute("SELECT * FROM " + selectAllFromTable)
 				for x in mycursor:
 					print(x)
+				ask()
 
 			# IN USING TABLE SECTION, IF 3, GO BACK TO MAIN LOBBY.
 			
