@@ -21,8 +21,10 @@ MySQL Database Automation. Simply have your database up and running, and Cynthia
 
 <h1 align="right">Using SQL Cynthia</h1>
 <ul align="right">
-  <li><p>MUST USE PYTHON3 FOR LINUX USERS</p></li>
-  <li><p>Install Python3 Ubuntu(DEBIAN)('sudo apt-get install python3') MAC('brew install python3')</p></li>
+  <li><p>MUST USE PYTHON3</p></li>
+  <li><p>Install Python3 Ubuntu(DEBIAN)('sudo apt-get install python3')<br>
+    MAC('brew install python3')<br>
+    Windows(Visit Python website)</p></li>
   <li><p>Install MySql Connector ('pip3 install mysql-connector-python')</p></li>
   <li><p>:globe_with_meridians: Make Sure Your SQL Database is Online.</p></li>
   <li><p>:package: Clone the Repository.</p></li>
