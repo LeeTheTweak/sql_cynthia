@@ -70,7 +70,7 @@ def showDatabases():
 
 # FOR QUITTING SQL CYNTHIA
 
-def quit():
+def quit_program():
 	print("******************* GOOD BYE! *****************************\n\n\n")
 	mycursor.execute("exit")
 
@@ -79,6 +79,7 @@ def quit():
 def delete_database():
 	dropDB = input("Which database would you like to delete?\n")
 	mycursor.execute("DROP DATABASE " + dropDB)
+	print("DATABASE DELETED")
 
 def describeTable(selectedTable):
 	mycursor.execute("DESCRIBE " + selectedTable)
@@ -100,15 +101,15 @@ def ask():
 	if choice == "1":										
 		askDBName = whats_db_name
 		dbName = input(askDBName.upper())
-		mycursor.execute("CREATE DATABASE " + dbName)
-		print(dbName + " is now a database!")
+		mycursor.execute(f"CREATE DATABASE {dbName}")
+		print(f"{dbName} is now a database!")
 		ask()
 
 	# IN MAIN LOBBY, IF USER HITS 2, USE DATABASE TYPED.
 
 	elif choice == "2":										
 		dbUse = input(whichToUse.upper())
-		mycursor.execute("USE " + dbUse)
+		mycursor.execute(f"USE {dbUse}")
 		print(nowUsing + dbUse.upper())
 		usingQuestions = input(askTables)
 
@@ -130,7 +131,7 @@ def ask():
 			
 			elif usingTableQuestions == "2":				
 				selectAllFromTable = input(whichTableToSelect.upper())
-				mycursor.execute("SELECT * FROM " + selectAllFromTable)
+				mycursor.execute(f"SELECT * FROM {selectAllFromTable}")
 				for x in mycursor:
 					print(x)
 				ask()
@@ -149,7 +150,7 @@ def ask():
 		# IN USING DATABASE SECTION, IF 4, QUIT PROGRAM.
 
 		elif usingQuestions == "4":							
-			quit()
+			quit_program()
 
 	# IN MAIN LOBBY, IF 3, SHOW DATABASES. PRESENT MAIN LOBBY.
 
@@ -166,7 +167,7 @@ def ask():
 	# IN MAIN LOBBY, IF 5, QUIT PROGRAM.
 
 	elif choice == "5":										
-		quit()
+		quit_program()
 
 
 # CALLING THE THESE FUNCTIONS.
